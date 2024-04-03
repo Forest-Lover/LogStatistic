@@ -1,0 +1,25 @@
+{
+    "input" : {
+        "file_filter" : {
+            "userdata" : [
+                "../../service_cluster_0/log/go_ms/userdata.log*"
+            ]
+        },
+        "line_filter" : "STANDARD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "MESSAGE",
+                "count" : 10,
+                "merge" : "K_MEANS-30"
+            },
+            {
+                "field" : "MESSAGE",
+                "count" : 10,
+                "merge" : "DBSCAN"
+            }
+        ],
+        "merge_file" : false
+    }
+}

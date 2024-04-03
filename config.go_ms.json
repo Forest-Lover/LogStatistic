@@ -1,0 +1,76 @@
+{
+    "input" : {
+        "file_filter" : {
+            "chat" : [
+                "../../service_cluster_0/log/go_ms/chat.log*"
+            ],
+            "directory" : [
+                "../../service_cluster_0/log/go_ms/directory.log*"
+            ],
+            "friend" : [
+                "../../service_cluster_0/log/go_ms/frined.log*"
+            ],
+            "gm" : [
+                "../../service_cluster_0/log/go_ms/gm.log*"
+            ],
+            "kv" : [
+                "../../service_cluster_0/log/go_ms/kv.log*"
+            ],
+            "login" : [
+                "../../service_cluster_0/log/go_ms/login.log*"
+            ],
+            "mail" : [
+                "../../service_cluster_0/log/go_ms/mail.log*"
+            ],
+            "navmesh" : [
+                "../../service_cluster_0/log/go_ms/navmesh.log*"
+            ],
+            "push" : [
+                "../../service_cluster_0/log/go_ms/push.log*"
+            ],
+            "queue" : [
+                "../../service_cluster_0/log/go_ms/queue.log*"
+            ],
+            "stateful_config" : [
+                "../../service_cluster_0/log/go_ms/stateful_config.log*"
+            ],
+            "test" : [
+                "../../service_cluster_0/log/go_ms/test.log*"
+            ],
+            "userdata" : [
+                "../../service_cluster_0/log/go_ms/userdata.log*"
+            ]
+        },
+        "line_filter" : "STANDARD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "TIMESTAMP",
+                "count" : 10,
+                "merge" : "TIME-3600"
+            },
+            {
+                "field" : "LEVEL",
+                "count" : 5,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MODULE",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "CALLER",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MESSAGE",
+                "count" : 10,
+                "merge" : "K_MEANS-30"
+            }
+        ],
+        "merge_file" : false
+    }
+}

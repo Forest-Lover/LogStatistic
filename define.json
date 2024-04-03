@@ -1,0 +1,47 @@
+{
+    "line_filter_def" : {
+        "ONE_LINE" : {
+            "seperator" : "\n",
+            "mapping" : {
+                "MESSAGE" : 1
+            }
+        },
+        "STANDARD" : {
+            "seperator" : "brackets",
+            "mapping" : {
+                "TIMESTAMP" : 1,
+                "LEVEL" : 2,
+                "MODULE" : 3,
+                "MESSAGE" : 4,
+                "CALLER" : 5
+            }
+        },
+        "ETCD" : {
+            "seperator" : "json",
+            "mapping" : {
+                "TIMESTAMP" : "ts",
+                "LEVEL" : "level",
+                "MODULE" : "module",
+                "MESSAGE" : "msg",
+                "CALLER" : "caller",
+                "TIME_SPENT" : "time spent",
+                "REMOTE" : "remote",
+                "RESPONSE_TYPE" : "response type",
+                "REQUEST_COUNT" : "request count",
+                "REQUEST_SIZE" : "request size",
+                "RESPONSE_COUNT" : "response count",
+                "RESPONSE_SIZE" : "response size",
+                "REQUEST_CONTENT" : "request content",
+                "ERROR" : "error"
+            }
+        }
+    },
+    "merge_def" : {
+        "EQUAL" : "字符串相等",
+        "ROUND_DECIMAL-x" : "保留x小数位",
+        "ROUND_SIGNIFICANT-x" : "保留x有效位",
+        "TIME-x" : "按时间归类（仅时间戳），x表示间隔秒数",
+        "DBSCAN" : "使用TF-IDF向量化后，用dbscan算法进行分类",
+        "K_MEANS-x" : "使用TF-IDF向量化后，用K-means算法进行分类，x表示分群数量"
+    }
+}

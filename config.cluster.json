@@ -1,0 +1,49 @@
+{
+    "input" : {
+        "file_filter" : {
+            "game" : [
+                "../../cluster_100/log/game*.log*"
+            ],
+            "gate" : [
+                "../../cluster_100/log/gate*.log*"
+            ],
+            "dbmanager" : [
+                "../../cluster_100/log/dbmanager*.log*"
+            ],
+            "stateful_config" : [
+                "../../cluster_100/log/stateful_config.log*"
+            ]
+        },
+        "line_filter" : "STANDARD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "TIMESTAMP",
+                "count" : 10,
+                "merge" : "TIME-3600"
+            },
+            {
+                "field" : "LEVEL",
+                "count" : 5,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MODULE",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "CALLER",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MESSAGE",
+                "count" : 10,
+                "merge" : "K_MEANS-30"
+            }
+        ],
+        "merge_file" : false
+    }
+}

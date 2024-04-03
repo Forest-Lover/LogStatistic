@@ -1,0 +1,30 @@
+{
+    "input" : {
+        "file_filter" : {
+            "etcd" : [
+                "../../service_cluster_0/log/etcd.log*"
+            ]
+        },
+        "line_filter" : "ETCD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "TIME_SPENT",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "TIME_SPENT",
+                "count" : 10,
+                "merge" : "ROUND_DECIMAL-0"
+            },
+            {
+                "field" : "TIME_SPENT",
+                "count" : 10,
+                "merge" : "ROUND_SIGNIFICANT-2"
+            }
+        ],
+        "merge_file" : false
+    }
+}

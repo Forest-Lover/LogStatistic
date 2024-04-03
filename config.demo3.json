@@ -1,0 +1,27 @@
+{
+    "input" : {
+        "file_filter" : {
+            "userdata" : [
+                "../../cluster_100/log/game0.log*"
+            ]
+        },
+        "line_filter" : "STANDARD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "CALLER",
+                "count" : 30,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MESSAGE",
+                "count" : 15,
+                "merge" : "K_MEANS-30"
+            }
+        ],
+        "merge_file" : false,
+        "print_line_num" : 5,
+        "print_line_field" : ["LEVEL", "MODULE", "MESSAGE"]
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "input" : {
+        "file_filter" : {
+            "game" : [
+                "../../service_cluster_0/log/lua_ms/game*.log*"
+            ],
+            "gate" : [
+                "../../service_cluster_0/log/lua_ms/gate*.log*"
+            ],
+            "dbmanager" : [
+                "../../service_cluster_0/log/lua_ms/dbmanager*.log*"
+            ]
+        },
+        "line_filter" : "STANDARD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "TIMESTAMP",
+                "count" : 10,
+                "merge" : "TIME-3600"
+            },
+            {
+                "field" : "LEVEL",
+                "count" : 5,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MODULE",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "CALLER",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MESSAGE",
+                "count" : 10,
+                "merge" : "K_MEANS-30"
+            }
+        ],
+        "merge_file" : false
+    }
+}
