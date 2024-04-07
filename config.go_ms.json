@@ -41,7 +41,7 @@
                 "../../service_cluster_0/log/go_ms/userdata.log*"
             ]
         },
-        "line_filter" : "STANDARD"
+        "field_mapping" : "STANDARD"
     },
     "output" : {
         "toplist" : [

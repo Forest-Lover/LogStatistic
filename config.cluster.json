@@ -14,7 +14,7 @@
                 "../../cluster_100/log/stateful_config.log*"
             ]
         },
-        "line_filter" : "STANDARD"
+        "field_mapping" : "STANDARD"
     },
     "output" : {
         "toplist" : [

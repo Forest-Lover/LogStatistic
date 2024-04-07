@@ -106,31 +106,34 @@ def parse_decimal_places(log, decimal_places):
     return log
 
 # 预处理函数
-def preprocess_log(log_line, line_filter_def):
+def preprocess_log(log_line, field_mapping_def):
     log_parts = {}
-    if line_filter_def['seperator'] == 'brackets':
+    if field_mapping_def['seperator'] == 'none':
+        # WHOLE 定义，整个逻辑行是一个字段
+        log_parts = {'MESSAGE': log_line.strip()}
+    elif field_mapping_def['seperator'] == 'brackets':
         if not log_line.startswith('[') or not log_line.strip().endswith(']'):
             parts = []
         else:
             parts = extract_bracket_contents(log_line)
             # parts = re.findall(r'\[(?:[^\[\]]|\[[^\[\]]*\])*\]', log_line)
             # parts = re.findall(r'\[([^[\]]+(?:\[[^\]]*\])?[^[\]]*)\]', log_line)
-        for key, index in line_filter_def['mapping'].items():
+        for key, index in field_mapping_def['mapping'].items():
             try:
                 log_parts[key] = parts[index - 1]
             except IndexError:
                 log_parts[key] = "null"
-    elif line_filter_def['seperator'] == 'json':
+    elif field_mapping_def['seperator'] == 'json':
         try:
             log_json = json.loads(log_line)
-            for key, field in line_filter_def['mapping'].items():
+            for key, field in field_mapping_def['mapping'].items():
                 log_parts[key] = log_json.get(field, "null")
         except json.JSONDecodeError:
-            for key in line_filter_def['mapping'].keys():
+            for key in field_mapping_def['mapping'].keys():
                 log_parts[key] = "null"
     else:
-        parts = log_line.strip().split(line_filter_def['seperator'])
-        for key, index in line_filter_def['mapping'].items():
+        parts = log_line.strip().split(field_mapping_def['seperator'])
+        for key, index in field_mapping_def['mapping'].items():
             try:
                 log_parts[key] = parts[index - 1]
             except IndexError:
@@ -162,12 +165,11 @@ def group_log(logs, merge_def):
         num_groups = int(merge_def.split('-')[1])
         vectorizer = TfidfVectorizer()
         X = vectorizer.fit_transform(logs)
+        num_groups = min(num_groups, X.shape[0])
         kmeans = KMeans(n_clusters=num_groups, random_state=42)
         kmeans.fit(X)
         groups = kmeans.labels_
         # 为K_MEANS生成簇信息和索引
-        order_centroids = kmeans.cluster_centers_.argsort()[:, ::-1]
-        terms = vectorizer.get_feature_names_out()
         for i in range(num_groups):
             group_indexes[i] = list(np.where(groups == i)[0])
             centroid_vector = kmeans.cluster_centers_[i]
@@ -254,20 +256,29 @@ def process_input(preprocessed_logs, input_config, define, file_key, use_multith
         else:
             print(f"Warning: No files found for pattern {path}")
 
-    line_filter_def = define["line_filter_def"][input_config['line_filter']]
+    field_mapping_def = define["field_mapping_def"][input_config['field_mapping']]
 
     # 内部函数，用于处理单个文件
-    def process_single_file(log_file, line_filter_def):
+    def process_single_file(log_file, field_mapping_def, line_filter_pattern, field_filters):
         preprocessed_data = []
         with open(log_file, 'r', encoding='utf-8') as file:
-            for log in file:
-                preprocessed_data.append(preprocess_log(log, line_filter_def))
+            file_content = file.read()
+            # 使用正则表达式匹配逻辑行
+            logical_lines = re.findall(line_filter_pattern, file_content, re.MULTILINE | re.DOTALL)
+            for log in logical_lines:
+                log_data = preprocess_log(log, field_mapping_def)
+                if all(re.search(f['match'], log_data.get(f['field'], '')) for f in field_filters):
+                    preprocessed_data.append(log_data)
+            print(f"file:{log_file}, logical_lines:{len(logical_lines)}, matched_lines:{len(preprocessed_data)}")
         return preprocessed_data
+
+    line_filter_pattern = input_config.get('line_filter', r'^(.*?)(?=\n|$)')  #默认行为类似:readline
+    field_filters = input_config.get('field_filters', [])  #默认[], 不过滤field
 
     if use_multithreading:
         # 使用多线程处理日志文件
         with ThreadPoolExecutor() as executor:
-            future_to_file_data = {executor.submit(process_single_file, file_path, line_filter_def): file_path for file_path in file_paths}
+            future_to_file_data = {executor.submit(process_single_file, file_path, field_mapping_def, line_filter_pattern, field_filters): file_path for file_path in file_paths}
             for future in as_completed(future_to_file_data):
                 file_path = future_to_file_data[future]
                 try:
@@ -279,7 +290,7 @@ def process_input(preprocessed_logs, input_config, define, file_key, use_multith
         # 不使用多线程，直接顺序处理
         for file_path in file_paths:
             try:
-                data = process_single_file(file_path, line_filter_def)
+                data = process_single_file(file_path, field_mapping_def, line_filter_pattern, field_filters)
                 preprocessed_logs.extend(data)
             except Exception as exc:
                 print(f'File {file_path} generated an exception: {exc}')

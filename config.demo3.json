@@ -5,7 +5,14 @@
                 "../../cluster_100/log/game0.log*"
             ]
         },
-        "line_filter" : "STANDARD"
+        "line_filter" : "^\\[.*?\\]$",
+        "field_mapping" : "STANDARD",
+        "field_filters" : [
+            {
+                "field" : "LEVEL",
+                "match" : "info|error"
+            }
+        ]
     },
     "output" : {
         "toplist" : [

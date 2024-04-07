@@ -1,18 +1,23 @@
 ### 配置文件
 1. define.json 预定义的处理行为，被config.json引用
-  - line_filter_def 日志文件中字段对应的关系
-    - ONE_LINE  整行计算
+  - field_mapping_def 日志文件中字段对应的关系
+    - LINE  逻辑行划分后，再\n分隔计算
+    - WHOLE 逻辑行划分后，整行参与计算
     - STANDARD  eg:[2024-04-01 20:54:53.459] [info]  [TcpConnection] [ReadLoop start, remote addr 192.168.119.100:26001] [Connection.go:238]
     - ETCD      eg:{"level":"debug","ts":"2024-04-02T20:46:23.091+0800","caller":"v3rpc/interceptor.go:175","msg":"request stats","start time":"2024-04-02T20:46:23.091+0800","time spent":"15.958µs","remote":"192.168.119.100:53798","response 
     type":"etcdserverpb.Cluster/MemberList","request count":-1,"request size":-1,"response count":-1,"response size":-1,"request content":""}
     - 说明：其它的可以自行声明，声明后可以在config.json中引用
-      - seperator 定义分隔字符
+      - seperator 定义分隔字符，其中(none, brackets, json)特殊处理
       - mapping 对应映射关系
 
-  - merge_def 日志文本的聚类方式
+  - merge_def 日志文本的聚类方式，参考define.json具体的说明
 
 2. config.json 定义具体的文件处理逻辑
   - input 定义输入的文件
+    - file_filter 过滤文件，可以分多个组分别处理输出
+    - line_filter [可选 default:\n]逻辑行过滤方式，field是按照逻辑行和对应的mapping来拆分的
+    - field_mapping field分隔方式，在define.json中定义
+    - field_filters [可选 default:空]field过滤方式，每一项对应一种过滤规则，过滤field匹配的行，各种过滤规则间是'与'的关系
   - output 定义输出的方式
     - toplist 归类输出方式，每一项对应一个输出
     - merge_file 是否需要合并input文件进行统计，如不合并总输出项=#toplist*#input

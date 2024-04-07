@@ -5,7 +5,7 @@
                 "../../service_cluster_0/log/etcd.log*"
             ]
         },
-        "line_filter" : "ETCD"
+        "field_mapping" : "ETCD"
     },
     "output" : {
         "toplist" : [

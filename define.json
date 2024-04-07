@@ -1,7 +1,13 @@
 {
-    "line_filter_def" : {
-        "ONE_LINE" : {
+    "field_mapping_def" : {
+        "LINE" : {
             "seperator" : "\n",
+            "mapping" : {
+                "MESSAGE" : 1
+            }
+        },
+        "WHOLE" : {
+            "seperator" : "none",
             "mapping" : {
                 "MESSAGE" : 1
             }
