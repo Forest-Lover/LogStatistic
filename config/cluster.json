@@ -1,0 +1,50 @@
+{
+    "input" : {
+        "root_path" : "../../server/Bin/cluster_scripts/linux/cluster_100/",
+        "file_filter" : {
+            "game" : [
+                "log/game*.log*"
+            ],
+            "gate" : [
+                "log/gate*.log*"
+            ],
+            "dbmanager" : [
+                "log/dbmanager*.log*"
+            ],
+            "stateful_config" : [
+                "log/stateful_config.log*"
+            ]
+        },
+        "field_mapping" : "STANDARD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "TIMESTAMP",
+                "count" : 10,
+                "merge" : "TIME-3600"
+            },
+            {
+                "field" : "LEVEL",
+                "count" : 5,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MODULE",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "CALLER",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MESSAGE",
+                "count" : 10,
+                "merge" : "K_MEANS-30"
+            }
+        ],
+        "merge_file" : false
+    }
+}

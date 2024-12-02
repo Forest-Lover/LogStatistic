@@ -1,0 +1,32 @@
+{
+    "input" : {
+        "root_path" : "../../server/Bin/cluster_scripts/windows/cluster_current/",
+        "file_filter" : {
+            "game" : [
+                "log/game*.txt"
+            ]
+        },
+        "line_pattern" : "^\\[.*?\\]$",
+        "field_mapping" : "STANDARD",
+        "field_filters" : [
+            {
+                "field" : "LEVEL",
+                "match" : "info"
+            }
+        ]
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "CALLER",
+                "count" : 30,
+                "merge" : "EQUAL"
+            }
+        ],
+        "merge_file" : false,
+        "p4_caller_info" : true,
+        "p4_caller_ctx_len" : -1,
+        "print_line_num" : 1,
+        "print_line_field" : ["MESSAGE"]
+    }
+}

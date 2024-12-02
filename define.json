@@ -1,0 +1,109 @@
+{
+    "field_mapping_def" : {
+        "LINE" : {
+            "seperator" : "\n",
+            "mapping" : {
+                "MESSAGE" : 1
+            }
+        },
+        "WHOLE" : {
+            "seperator" : "none",
+            "mapping" : {
+                "MESSAGE" : 1
+            }
+        },
+        "STANDARD" : {
+            "seperator" : "brackets",
+            "mapping" : {
+                "TIMESTAMP" : 1,
+                "LEVEL" : 2,
+                "MODULE" : 3,
+                "MESSAGE" : 4,
+                "CALLER" : 5
+            }
+        },
+        "ETCD" : {
+            "seperator" : "json",
+            "mapping" : {
+                "TIMESTAMP" : "ts",
+                "LEVEL" : "level",
+                "MODULE" : "module",
+                "MESSAGE" : "msg",
+                "CALLER" : "caller",
+                "TIME_SPENT" : "time spent",
+                "REMOTE" : "remote",
+                "RESPONSE_TYPE" : "response type",
+                "REQUEST_COUNT" : "request count",
+                "REQUEST_SIZE" : "request size",
+                "RESPONSE_COUNT" : "response count",
+                "RESPONSE_SIZE" : "response size",
+                "REQUEST_CONTENT" : "request content",
+                "ERROR" : "error"
+            }
+        },
+        "BI_CUSTOM" : {
+            "seperator" : "json",
+            "mapping" : {
+                "event" : "event",
+                "event_ts": "event_ts",
+                "log_source": "log_source",
+
+                "properties.cluster_id" : "properties.cluster_id",
+                "properties.process_id" : "properties.process_id",
+                "properties.role_name" : "properties.role_name",
+                "properties.game_uid" : "properties.game_uid",
+                "properties.player_id" : "properties.player_id"
+            }
+        },
+        "BI_ITEM_FLOW" : {
+            "seperator" : "json",
+            "mapping" : {
+                "event" : "event",
+                "event_ts": "event_ts",
+                "log_source": "log_source",
+                "properties.role_name" : "properties.role_name",
+                "properties.game_uid" : "properties.game_uid",
+                "detail.item_id": "detail.item_id",
+                "detail.item_info": "detail.item_info",
+                "detail.action": "detail.action",
+                "detail.amount": "detail.amount",
+                "detail.operation_detail": "detail.operation_detail"
+            }
+        },
+        "BI_PET_CHNAGE_FLOW" : {
+            "seperator" : "json",
+            "mapping" : {
+                "event" : "event",
+                "event_ts": "event_ts",
+                "log_source": "log_source",
+                "properties.role_name" : "properties.role_name",
+                "properties.game_uid" : "properties.game_uid",
+                "detail.item_type": "detail.item_type",
+                "detail.pet_id": "detail.pet_id",
+                "detail.pet_uid": "detail.pet_uid",
+                "detail.lv": "detail.lv",
+                "detail.cp": "detail.cp",
+                "detail.skill_list": "detail.skill_list",
+                "detail.prop_info": "detail.prop_info",
+                "detail.prop_info.0": "detail.prop_info[0]",
+                "detail.prop_info.1": "detail.prop_info[1]",
+                "detail.prop_info.2": "detail.prop_info[2]",
+                "detail.prop_info.3": "detail.prop_info[3]",
+                "detail.prop_info.4": "detail.prop_info[4]",
+                "detail.prop_info.5": "detail.prop_info[5]",
+                "detail.talent_list": "detail.talent_list",
+                "detail.feature_list": "detail.feature_list",
+                "detail.overall_rating": "detail.overall_rating"
+            }
+        }
+    },
+    "merge_def" : {
+        "NONE" : "不归类,不合并",
+        "EQUAL" : "字符串相等",
+        "ROUND_DECIMAL-x" : "保留x小数位",
+        "ROUND_SIGNIFICANT-x" : "保留x有效位",
+        "TIME-x" : "按时间归类（仅时间戳），x表示间隔秒数",
+        "DBSCAN" : "使用TF-IDF向量化后，用dbscan算法进行分类",
+        "K_MEANS-x" : "使用TF-IDF向量化后，用K-means算法进行分类，x表示分群数量"
+    }
+}

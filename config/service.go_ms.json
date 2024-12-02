@@ -1,0 +1,77 @@
+{
+    "input" : {
+        "root_path" : "../../server/Bin/cluster_scripts/linux/service_cluster_0/",
+        "file_filter" : {
+            "chat" : [
+                "log/go_ms/chat.log*"
+            ],
+            "directory" : [
+                "log/go_ms/directory.log*"
+            ],
+            "friend" : [
+                "log/go_ms/friend.log*"
+            ],
+            "gm" : [
+                "log/go_ms/gm.log*"
+            ],
+            "kv" : [
+                "log/go_ms/kv.log*"
+            ],
+            "login" : [
+                "log/go_ms/login.log*"
+            ],
+            "mail" : [
+                "log/go_ms/mail.log*"
+            ],
+            "navmesh" : [
+                "log/go_ms/navmesh.log*"
+            ],
+            "push" : [
+                "log/go_ms/push.log*"
+            ],
+            "queue" : [
+                "log/go_ms/queue.log*"
+            ],
+            "stateful_config" : [
+                "log/go_ms/stateful_config.log*"
+            ],
+            "test" : [
+                "log/go_ms/test.log*"
+            ],
+            "userdata" : [
+                "log/go_ms/userdata.log*"
+            ]
+        },
+        "field_mapping" : "STANDARD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "TIMESTAMP",
+                "count" : 10,
+                "merge" : "TIME-3600"
+            },
+            {
+                "field" : "LEVEL",
+                "count" : 5,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MODULE",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "CALLER",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MESSAGE",
+                "count" : 10,
+                "merge" : "K_MEANS-30"
+            }
+        ],
+        "merge_file" : false
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "input" : {
+        "root_path" : "../../server/Bin/cluster_scripts/linux/service_cluster_0/",
+        "file_filter" : {
+            "game" : [
+                "log/lua_ms/game*.log*"
+            ],
+            "gate" : [
+                "log/lua_ms/gate*.log*"
+            ],
+            "dbmanager" : [
+                "log/lua_ms/dbmanager*.log*"
+            ]
+        },
+        "field_mapping" : "STANDARD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "TIMESTAMP",
+                "count" : 10,
+                "merge" : "TIME-3600"
+            },
+            {
+                "field" : "LEVEL",
+                "count" : 5,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MODULE",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "CALLER",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MESSAGE",
+                "count" : 10,
+                "merge" : "K_MEANS-30"
+            }
+        ],
+        "merge_file" : false
+    }
+}
