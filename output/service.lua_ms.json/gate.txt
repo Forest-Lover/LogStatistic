@@ -1,0 +1,90 @@
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': '2024-04-15 09:49:08.977', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 09:49:18.959', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:08:11.343', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 0-game0 elapsed 1.108524061s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:10:54.630', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.65805738s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:01.449', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:01.449', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 11.171016419s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:06.093', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 4.644114902s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:01.449', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 100-game0 elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:18.414', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 100-game0 elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 14.38531637s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:19.967', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 18.517725742s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.214135993s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:20.505', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 9.909413361s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.213944119s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:20.845', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 13.428198627s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.214157991s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:21.027', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 14.345252178s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.214170651s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:21.457', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 14.040492104s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:06.013', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 100-game0 elapsed 15.735250065s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:21.524', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 100-game0 elapsed 20.075134952s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:21.536', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 100-game0 elapsed 3.121598115s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:01.449', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:23.332', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:07.417', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:23.613', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:09.396', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:23.988', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:09.966', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 0-game0 elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:24.015', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 0-game0 elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:10.374', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:24.052', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:10.374', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 1.014909222s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:10.596', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:24.080', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:01.449', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:24.126', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:20.253', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 0-game0 elapsed 18.803654122s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:24.167', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 0-game0 elapsed 14.20058939s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.213941464s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:24.829', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 14.45496806s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.214564129s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:24.924', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 11.956668761s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:06.681', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:24.951', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:09.359', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:24.998', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:10.330', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:25.141', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:12.967', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:25.174', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.213916434s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:25.252', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 14.877399171s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:25.252', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 1.199884719s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:07.417', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:25.278', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:10.374', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:25.321', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.214142798s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:25.378', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 15.982594978s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:25.474', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 1.486748683s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:04.663', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.214061038s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:26.825', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 16.495124482s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:26.825', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 1.684478047s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:06.681', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 5.232359009s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:26.887', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 17.491608784s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:09.396', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:27.088', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:26.914', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:27.219', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:27.369', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:28.611', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 3.333060476s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:29.081', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 1.861744364s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:28.972', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:28.633', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:29.432', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:30.113', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:31.178', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:36.907', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:37.370', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:38.627', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:38.958', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:39.422', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:40.125', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:41.179', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:47.369', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': '2024-04-15 10:11:50.114', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}

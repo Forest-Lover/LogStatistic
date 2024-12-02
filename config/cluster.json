@@ -1,18 +1,18 @@
 {
     "input" : {
-        "root_path" : "../../server/Bin/cluster_scripts/linux/cluster_100/",
+        "root_path" : "../../server/Bin/cluster_scripts/*/cluster_current/",
         "file_filter" : {
             "game" : [
-                "log/game*.log*"
+                "log/game*.*"
             ],
             "gate" : [
-                "log/gate*.log*"
+                "log/gate*.*"
             ],
             "dbmanager" : [
-                "log/dbmanager*.log*"
+                "log/dbmanager*.*"
             ],
             "stateful_config" : [
-                "log/stateful_config.log*"
+                "log/stateful_config.*"
             ]
         },
         "field_mapping" : "STANDARD"
@@ -45,6 +45,7 @@
                 "merge" : "K_MEANS-30"
             }
         ],
-        "merge_file" : false
+        "merge_file" : false,
+        "write_log_file" : true
     }
 }

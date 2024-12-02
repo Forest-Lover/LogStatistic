@@ -1,0 +1,3 @@
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}

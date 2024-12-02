@@ -27,6 +27,7 @@
         "p4_caller_info" : true,
         "p4_caller_ctx_len" : -1,
         "print_line_num" : 1,
-        "print_line_field" : ["LEVEL", "MESSAGE"]
+        "print_line_field" : ["LEVEL", "MESSAGE"],
+        "write_log_file" : true
     }
 }

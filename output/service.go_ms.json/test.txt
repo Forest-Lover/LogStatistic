@@ -1,0 +1,6 @@
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': '2024-04-15 10:11:19.467', 'LEVEL': 'error', 'MODULE': 'Etcd', 'MESSAGE': 'KeepAliveOnce key: 0/SERVICE/TestService/661522b26e95520d7f1d4368, leaseID: 7587877913465477419, err: context deadline exceeded ', 'CALLER': 'etcdregistry.go:333'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
