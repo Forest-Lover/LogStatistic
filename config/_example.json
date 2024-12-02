@@ -1,0 +1,51 @@
+{
+    "input" : {
+        "root_path" : "./config/_example/",
+        "file_filter" : {
+            "game" : [
+                "game*.*"
+            ],
+            "gate" : [
+                "gate*.*"
+            ],
+            "dbmanager" : [
+                "dbmanager*.*"
+            ],
+            "stateful_config" : [
+                "stateful_config.*"
+            ]
+        },
+        "field_mapping" : "STANDARD"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "TIMESTAMP",
+                "count" : 10,
+                "merge" : "TIME-3600"
+            },
+            {
+                "field" : "LEVEL",
+                "count" : 5,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MODULE",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "CALLER",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "MESSAGE",
+                "count" : 10,
+                "merge" : "K_MEANS-30"
+            }
+        ],
+        "merge_file" : false,
+        "write_log_file" : true
+    }
+}

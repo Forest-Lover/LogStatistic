@@ -9,7 +9,7 @@
 ### 配置文件
 1. define.json 预定义的处理行为，被config.json引用 (一般不用改)
   - field_mapping_def 日志文件中字段对应的关系
-    - LINE 逻辑行划分后，再\n分隔计算
+    - LINE 逻辑行划分后，再\n分隔计算(逻辑行是指按照分隔符切割后的字符串，根据分隔规则确定，不区分换行符)
     - WHOLE 逻辑行划分后，整行参与计算
     - STANDARD eg:```[2024-12-02 10:53:37.676924]	[debug]	[Player]	[updateCurPetFormation battle	false	Z00hMb8OlebPX2fz	1001100	Player(uid=32906, entityId=Z0hiqZrYVkUqGKtT, actorId=1)]	[[updateCurPetFormation]     ...SpaceEntities\PlayerComponent\PetsFormationComponent.lua:233]```
     - ETCD eg:```{"level":"debug","ts":"2024-12-02T00:01:06.254+0800","caller":"v3rpc/interceptor.go:175","msg":"request stats","start time":"2024-12-02T00:01:06.254+0800","time spent":"23.576µs","remote":"10.8.43.184:64071","response type":"/etcdserverpb.Cluster/MemberList","request count":-1,"request size":-1,"response count":-1,"response size":-1,"request content":""}```
@@ -48,8 +48,5 @@
 ### 使用方式
 ```
 python3 -m pip install -r requirements.txt
-
-python3 logStatistic.py --conf=config.local.json
-python3 logStatistic.py --conf=config/cluster.json
-python3 logStatistic.py --conf=config/bi.custom.json
+python3 logStatistic.py --conf=config/_example.json
 ```

@@ -1,0 +1,21 @@
+{'TIMESTAMP': '2024-11-30 18:25:08.298478', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'set log level to DEBUG', 'CALLER': 'main.go:75'}
+{'TIMESTAMP': '2024-11-30 18:25:08.305817', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'DBManager start version 000', 'CALLER': 'main.go:81'}
+{'TIMESTAMP': '2024-11-30 18:25:11.390909', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'mongo url list: [mongodb://10.8.45.77:27017/gamedb_test_70 mongodb://10.8.45.77:27017/commondb]', 'CALLER': 'main.go:89'}
+{'TIMESTAMP': '2024-11-30 18:25:11.390909', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'single redis url: 10.8.45.77:7000', 'CALLER': 'main.go:96'}
+{'TIMESTAMP': '2024-11-30 18:25:11.399653', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'Init mongodb gamedb_test_70 successful', 'CALLER': 'DBScheduler.go:110'}
+{'TIMESTAMP': '2024-11-30 18:25:11.406926', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'Init mongodb commondb successful', 'CALLER': 'DBScheduler.go:110'}
+{'TIMESTAMP': '2024-11-30 18:25:11.406926', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'redisClient: PING', 'CALLER': 'DBScheduler.go:148'}
+{'TIMESTAMP': '2024-11-30 18:25:11.408733', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'redisClient: PONG', 'CALLER': 'DBScheduler.go:154'}
+{'TIMESTAMP': '2024-11-30 18:25:11.408812', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'Start MongoLoop', 'CALLER': 'DBScheduler.go:224'}
+{'TIMESTAMP': '2024-11-30 18:25:11.408812', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'Start RedisLoop', 'CALLER': 'DBScheduler.go:240'}
+{'TIMESTAMP': '2024-11-30 18:25:11.415684', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': 'dbmanager0 start listen 127.0.0.1:28000', 'CALLER': 'main.go:155'}
+{'TIMESTAMP': '2024-11-30 18:25:11.415684', 'LEVEL': 'info', 'MODULE': 'Etcd', 'MESSAGE': 'Starting with Endpoints [http://10.8.45.77:2379]', 'CALLER': 'etcdregistry.go:96'}
+{'TIMESTAMP': '2024-11-30 18:25:11.415684', 'LEVEL': 'info', 'MODULE': 'DBManagerServer', 'MESSAGE': 'TcpServer start listening address 127.0.0.1:28000', 'CALLER': 'TcpServer.go:100'}
+{'TIMESTAMP': '2024-11-30 18:25:11.421934', 'LEVEL': 'info', 'MODULE': 'Etcd', 'MESSAGE': 'register key 8043077/ENGINE/DB/674ae807d3c189a9e7ffbba0 with lease 7587883016994621631 success, revision 25642', 'CALLER': 'etcdregistry.go:332'}
+{'TIMESTAMP': '2024-11-30 18:25:11.422930', 'LEVEL': 'info', 'MODULE': 'DBManager', 'MESSAGE': '<!--XSUPERVISOR:BEGIN-->DBMANAGER UP SUCCESS<!--XSUPERVISOR:END-->', 'CALLER': 'main.go:231'}
+{'TIMESTAMP': '2024-11-30 18:25:22.320200', 'LEVEL': 'info', 'MODULE': 'DBManagerServer', 'MESSAGE': 'New connection coming, client address 127.0.0.1:9898', 'CALLER': 'TcpServer.go:122'}
+{'TIMESTAMP': '2024-11-30 18:25:22.320200', 'LEVEL': 'info', 'MODULE': 'TcpConnection', 'MESSAGE': 'WorkLoop start, remote addr 127.0.0.1:9898', 'CALLER': 'Connection.go:278'}
+{'TIMESTAMP': '2024-11-30 18:25:22.320200', 'LEVEL': 'info', 'MODULE': 'TcpConnection', 'MESSAGE': 'ReadLoop start, remote addr 127.0.0.1:9898', 'CALLER': 'Connection.go:238'}
+{'TIMESTAMP': '2024-11-30 18:25:35.431731', 'LEVEL': 'debug', 'MODULE': 'Etcd', 'MESSAGE': 'KeepAliveOnce key: 8043077/ENGINE/DB/674ae807d3c189a9e7ffbba0, leaseID: 7587883016994621631', 'CALLER': 'etcdregistry.go:367'}
+{'TIMESTAMP': '2024-11-30 18:25:59.441803', 'LEVEL': 'debug', 'MODULE': 'Etcd', 'MESSAGE': 'KeepAliveOnce key: 8043077/ENGINE/DB/674ae807d3c189a9e7ffbba0, leaseID: 7587883016994621631', 'CALLER': 'etcdregistry.go:367'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}

@@ -457,7 +457,7 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
     # 预处理结果，写入Excel文件
     if output_config.get('write_log_file', False):
         file_path = os.path.join(output_dir, f"{file_key}.txt")
-        with open(file_path, 'w') as file:
+        with open(file_path, 'w', encoding='utf-8', errors='ignore') as file:
             for log in preprocessed_logs:
                 file.write(f"{log}\n")
         excel_file_path = os.path.join(output_dir, f"{file_key}.xlsx")
@@ -571,7 +571,7 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
 
     # 数据统计结果，写入Excel文件
     df = pd.DataFrame(excel_data)
-    excel_file_path = os.path.join(output_dir, f"result.xlsx")
+    excel_file_path = os.path.join(output_dir, f"{file_key}.result.xlsx")
     df.to_excel(excel_file_path, index=False)
     auto_adjust_excel_dimensions(excel_file_path)
     print(f"Statistic Results have been written to {excel_file_path}")
@@ -584,7 +584,7 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
 if __name__ == "__main__":
     # 设置命令行参数解析
     parser = argparse.ArgumentParser(description='Log Statistics Processor')
-    parser.add_argument('--conf', default='config.local.json', help='Path to the configuration file')
+    parser.add_argument('--conf', default='config/_example.json', help='Path to the configuration file')
     parser.add_argument('--mem_limit', default=10240, type=int, help='Memory limit in megabytes')
     args = parser.parse_args()
 
