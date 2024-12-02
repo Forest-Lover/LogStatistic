@@ -12,7 +12,7 @@
                 "dbmanager*.*"
             ],
             "stateful_config" : [
-                "stateful_config.*"
+                "stateful_config*.*"
             ]
         },
         "field_mapping" : "STANDARD"
