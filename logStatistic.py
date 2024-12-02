@@ -21,6 +21,9 @@ from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_compl
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 
+# 在全局范围内创建一个打印的锁对象
+print_lock = threading.Lock()
+
 def memory_watcher(max_memory, check_interval):
     """
     Monitor the memory usage of the current process in a separate thread.
@@ -367,18 +370,63 @@ def group_log(logs, merge_def):
     # 返回聚类结果和每个簇的信息和索引
     return groups, group_info, group_indexes
 
-# 主处理函数
-def process_log(input_config, output_config, define):
+# 内部函数，用于处理单个 file_key 项
+def process_file(input_config, output_config, define, file_key, use_multithreading):
+    preprocessed_logs = []
+    process_input(preprocessed_logs, input_config, define, file_key, use_multithreading)
+    process_output(preprocessed_logs, output_config, define, file_key, use_multithreading)
+
+def process_log(input_config, output_config, define, use_multithreading):
     if output_config['merge_file']:
         preprocessed_logs = []
-        for file_key in input_config['file_filter'].keys():
-            process_input(preprocessed_logs, input_config, define, file_key)
-        process_output(preprocessed_logs, output_config, define, "MERGED")
+        if use_multithreading:
+            with ThreadPoolExecutor() as executor:
+                futures = {executor.submit(process_input, preprocessed_logs, input_config, define, file_key, use_multithreading): file_key for file_key in input_config['file_filter'].keys()}
+                for future in as_completed(futures):
+                    pass
+        else:
+            for file_key in input_config['file_filter'].keys():
+                process_input(preprocessed_logs, input_config, define, file_key, use_multithreading)
+        process_output(preprocessed_logs, output_config, define, "MERGED", use_multithreading)
     else:
-        for file_key in input_config['file_filter'].keys():
-            preprocessed_logs = []
-            process_input(preprocessed_logs, input_config, define, file_key)
-            process_output(preprocessed_logs, output_config, define, file_key)
+        if use_multithreading:
+            with ThreadPoolExecutor() as executor:
+                futures = []
+                for file_key in input_config['file_filter'].keys():
+                    future = executor.submit(process_file, input_config, output_config, define, file_key, False)
+                    futures.append(future)
+                for future in as_completed(futures):
+                    pass
+        else:
+            for file_key in input_config['file_filter'].keys():
+                preprocessed_logs = []
+                process_input(preprocessed_logs, input_config, define, file_key, use_multithreading)
+                process_output(preprocessed_logs, output_config, define, file_key, use_multithreading)
+
+# 内部函数，用于处理单个文件
+def process_single_file(log_file, line_pattern, line_filter, line_extract, field_mapping_def, field_filters):
+    preprocessed_data = []
+    with open(log_file, 'r', encoding='utf-8', errors='ignore') as file:
+        file_content = file.read()
+        # 使用正则表达式匹配逻辑行
+        logical_lines = re.findall(line_pattern, file_content, re.MULTILINE | re.DOTALL)
+        for log in logical_lines:
+            # 如果 line_filter 不是 ".*"，则应用 line_filter 正则匹配
+            if line_filter != ".*" and not re.search(line_filter, log):
+                continue
+            # 如果 line_extract 不是 ".*"，则应用 line_extract 正则匹配
+            if line_extract != ".*":
+                extracted_data = re.search(line_extract, log)
+                if extracted_data:
+                    log = extracted_data.group(0)
+                else:
+                    continue
+            log_data = preprocess_log(log, field_mapping_def)
+            # 应用 field_filters
+            if all(re.search(f['match'], log_data.get(f['field'], '')) for f in field_filters):
+                preprocessed_data.append(log_data)
+        print(f"file:{log_file}, logical_lines:{len(logical_lines)}, matched_lines:{len(preprocessed_data)}")
+    return preprocessed_data
 
 def process_input(preprocessed_logs, input_config, define, file_key, use_multithreading=False):
     file_paths = []
@@ -389,36 +437,14 @@ def process_input(preprocessed_logs, input_config, define, file_key, use_multith
         matched_files = [f for f in matched_files if not f.endswith('.tgz')]
         if matched_files:
             file_paths.extend(matched_files)
-            print(f"Include: {matched_files}")
+            with print_lock:
+                print(f"Include: {matched_files}")
         else:
-            print(f"Warning: No files found for pattern {path}")
+            with print_lock:
+                print(f"Warning: No files found for pattern {path}")
 
     field_mapping_def = define["field_mapping_def"][input_config['field_mapping']]
 
-    # 内部函数，用于处理单个文件
-    def process_single_file(log_file, line_pattern, line_filter, line_extract, field_mapping_def, field_filters):
-        preprocessed_data = []
-        with open(log_file, 'r', encoding='utf-8', errors='ignore') as file:
-            file_content = file.read()
-            # 使用正则表达式匹配逻辑行
-            logical_lines = re.findall(line_pattern, file_content, re.MULTILINE | re.DOTALL)
-            for log in logical_lines:
-                # 如果 line_filter 不是 ".*"，则应用 line_filter 正则匹配
-                if line_filter != ".*" and not re.search(line_filter, log):
-                    continue
-                # 如果 line_extract 不是 ".*"，则应用 line_extract 正则匹配
-                if line_extract != ".*":
-                    extracted_data = re.search(line_extract, log)
-                    if extracted_data:
-                        log = extracted_data.group(0)
-                    else:
-                        continue
-                log_data = preprocess_log(log, field_mapping_def)
-                # 应用 field_filters
-                if all(re.search(f['match'], log_data.get(f['field'], '')) for f in field_filters):
-                    preprocessed_data.append(log_data)
-            print(f"file:{log_file}, logical_lines:{len(logical_lines)}, matched_lines:{len(preprocessed_data)}")
-        return preprocessed_data
 
     line_pattern    = input_config.get('line_pattern', r'^(.*?)(?=\n|$)')   #默认行为类似:readline
     line_filter     = input_config.get('line_filter', r'.*')                #默认使用所有逻辑行
@@ -445,8 +471,18 @@ def process_input(preprocessed_logs, input_config, define, file_key, use_multith
             except Exception as exc:
                 print(f'File {file_path} generated an exception: {exc}')
 
+# 内部处理函数，用于处理单个 top_list 项
+def process_toplist_item(preprocessed_logs, file_key, toplist_item):
+    field = toplist_item['field']
+    count = toplist_item['count']
+    merge = toplist_item['merge']
+
+    field_logs = [log[field] for log in preprocessed_logs]
+    return group_log(field_logs, merge), (file_key, count, merge, field)
+
 def process_output(preprocessed_logs, output_config, define, file_key, use_multithreading=False):
-    print(f"Processing {file_key}, total lines {len(preprocessed_logs)} ...")
+    with print_lock:
+        print(f"Processing {file_key}, total lines {len(preprocessed_logs)} ...")
 
     # 创建输出目录
     # 检查并创建 output/{args.conf} 目录
@@ -467,18 +503,11 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
         df = pd.DataFrame(excel_data)
         df.to_excel(excel_file_path, index=False)
         auto_adjust_excel_dimensions(excel_file_path)
-        print(f"Preprocess Results have been written to {excel_file_path}")
+        with print_lock:
+            print(f"Preprocess Results have been written to {excel_file_path}")
 
     # 准备数据列表，用于最后写入Excel
     excel_data = []
-
-    def process_toplist_item(toplist_item):
-        field = toplist_item['field']
-        count = toplist_item['count']
-        merge = toplist_item['merge']
-
-        field_logs = [log[field] for log in preprocessed_logs]
-        return group_log(field_logs, merge), (file_key, count, merge, field)
 
     def print_results(results, file_key, count, merge, field):
         groups, group_info, group_indexes = results
@@ -560,32 +589,45 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
 
     if use_multithreading:
         with ProcessPoolExecutor() as executor:
-            futures = [executor.submit(process_toplist_item, toplist_item) for toplist_item in output_config['toplist']]
+            futures = [executor.submit(process_toplist_item, preprocessed_logs, file_key, toplist_item) for toplist_item in output_config['toplist']]
             for future in as_completed(futures):
                 results, info = future.result()
-                print_results(results, *info)
+                with print_lock:
+                    print_results(results, *info)
     else:
         for toplist_item in output_config['toplist']:
-            results, info = process_toplist_item(toplist_item)
-            print_results(results, *info)
+            results, info = process_toplist_item(preprocessed_logs, file_key, toplist_item)
+            with print_lock:
+                print_results(results, *info)
 
     # 数据统计结果，写入Excel文件
     df = pd.DataFrame(excel_data)
     excel_file_path = os.path.join(output_dir, f"{file_key}.result.xlsx")
     df.to_excel(excel_file_path, index=False)
     auto_adjust_excel_dimensions(excel_file_path)
-    print(f"Statistic Results have been written to {excel_file_path}")
+    with print_lock:
+        print(f"Statistic Results have been written to {excel_file_path}")
 
     # 打开输出目录
     if platform.system().lower() in ("win", "windows") and os.path.exists(output_dir):
         os.system("start " + output_dir)
 
+def str_to_bool(value):
+    if isinstance(value, bool):
+        return value
+    if value.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif value.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 
 if __name__ == "__main__":
     # 设置命令行参数解析
     parser = argparse.ArgumentParser(description='Log Statistics Processor')
     parser.add_argument('--conf', default='config/_example.json', help='Path to the configuration file')
     parser.add_argument('--mem_limit', default=10240, type=int, help='Memory limit in megabytes')
+    parser.add_argument('--multi_thread', default=False, type=str_to_bool, help='use multi thread or not')
     args = parser.parse_args()
 
     # 设置内存限制(MB)
@@ -612,4 +654,4 @@ if __name__ == "__main__":
         exit(1)
 
     # 运行主处理函数
-    process_log(config['input'], config['output'], define)
+    process_log(config['input'], config['output'], define, args.multi_thread)

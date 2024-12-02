@@ -13,7 +13,7 @@
             "cwd": "${fileDirname}",
             "justMyCode": true,
             "args": [
-                "--conf=config/bi.pet_change_flow.json"
+                "--conf=config/service.lua_ms.json"
             ]
         },
     ]
