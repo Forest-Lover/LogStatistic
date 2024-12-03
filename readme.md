@@ -54,5 +54,5 @@ python3 -m pip install -r requirements.txt
 python3 logStatistic.py --conf=config/_example.json
 可选参数：
   --mem_limit=10240 内存限制(MB)
-  --multi_thread=True 开启多线程
+  --multi_thread=True 开启多线程(开启后,标准输出可能乱序)
 ```

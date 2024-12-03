@@ -17,12 +17,15 @@ from datetime import datetime, timedelta, timezone
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import DBSCAN, KMeans
 from sklearn.metrics.pairwise import cosine_similarity
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 
 # 在全局范围内创建一个打印的锁对象
 print_lock = threading.Lock()
+# 全局变量用于标记output目录是否已经被创建
+directory_created = False
+directory_creation_lock = threading.Lock()
 
 def memory_watcher(max_memory, check_interval):
     """
@@ -381,7 +384,7 @@ def process_log(input_config, output_config, define, use_multithreading):
         preprocessed_logs = []
         if use_multithreading:
             with ThreadPoolExecutor() as executor:
-                futures = {executor.submit(process_input, preprocessed_logs, input_config, define, file_key, use_multithreading): file_key for file_key in input_config['file_filter'].keys()}
+                futures = [executor.submit(process_input, preprocessed_logs, input_config, define, file_key, use_multithreading) for file_key in input_config['file_filter'].keys()]
                 for future in as_completed(futures):
                     pass
         else:
@@ -391,10 +394,7 @@ def process_log(input_config, output_config, define, use_multithreading):
     else:
         if use_multithreading:
             with ThreadPoolExecutor() as executor:
-                futures = []
-                for file_key in input_config['file_filter'].keys():
-                    future = executor.submit(process_file, input_config, output_config, define, file_key, False)
-                    futures.append(future)
+                futures = [executor.submit(process_file, input_config, output_config, define, file_key, use_multithreading) for file_key in input_config['file_filter'].keys()]
                 for future in as_completed(futures):
                     pass
         else:
@@ -406,26 +406,29 @@ def process_log(input_config, output_config, define, use_multithreading):
 # 内部函数，用于处理单个文件
 def process_single_file(log_file, line_pattern, line_filter, line_extract, field_mapping_def, field_filters):
     preprocessed_data = []
-    with open(log_file, 'r', encoding='utf-8', errors='ignore') as file:
-        file_content = file.read()
-        # 使用正则表达式匹配逻辑行
-        logical_lines = re.findall(line_pattern, file_content, re.MULTILINE | re.DOTALL)
-        for log in logical_lines:
-            # 如果 line_filter 不是 ".*"，则应用 line_filter 正则匹配
-            if line_filter != ".*" and not re.search(line_filter, log):
-                continue
-            # 如果 line_extract 不是 ".*"，则应用 line_extract 正则匹配
-            if line_extract != ".*":
-                extracted_data = re.search(line_extract, log)
-                if extracted_data:
-                    log = extracted_data.group(0)
-                else:
+    try:
+        with open(log_file, 'r', encoding='utf-8', errors='ignore') as file:
+            file_content = file.read()
+            # 使用正则表达式匹配逻辑行
+            logical_lines = re.findall(line_pattern, file_content, re.MULTILINE | re.DOTALL)
+            for log in logical_lines:
+                # 应用 line_filter 过滤内容
+                if line_filter != ".*" and not re.search(line_filter, log):
                     continue
-            log_data = preprocess_log(log, field_mapping_def)
-            # 应用 field_filters
-            if all(re.search(f['match'], log_data.get(f['field'], '')) for f in field_filters):
-                preprocessed_data.append(log_data)
-        print(f"file:{log_file}, logical_lines:{len(logical_lines)}, matched_lines:{len(preprocessed_data)}")
+                # 应用 line_extract 提取内容
+                if line_extract != ".*":
+                    extracted_data = re.search(line_extract, log)
+                    if extracted_data:
+                        log = extracted_data.group(0)
+                    else:
+                        continue
+                log_data = preprocess_log(log, field_mapping_def)
+                # 应用 field_filters 过滤mapping后的内容
+                if all(re.search(f['match'], log_data.get(f['field'], '')) for f in field_filters):
+                    preprocessed_data.append(log_data)
+            print(f"file:{log_file}, logical_lines:{len(logical_lines)}, matched_lines:{len(preprocessed_data)}")
+    except Exception as e:
+        print(f"Error processing file {log_file}: {e}")
     return preprocessed_data
 
 def process_input(preprocessed_logs, input_config, define, file_key, use_multithreading=False):
@@ -438,10 +441,10 @@ def process_input(preprocessed_logs, input_config, define, file_key, use_multith
         if matched_files:
             file_paths.extend(matched_files)
             with print_lock:
-                print(f"Include: {matched_files}")
+                print(f"[{file_key}] Include: {matched_files}")
         else:
             with print_lock:
-                print(f"Warning: No files found for pattern {path}")
+                print(f"[{file_key}] Warning: No files found for pattern {path}")
 
     field_mapping_def = define["field_mapping_def"][input_config['field_mapping']]
 
@@ -454,22 +457,15 @@ def process_input(preprocessed_logs, input_config, define, file_key, use_multith
     if use_multithreading:
         # 使用多线程处理日志文件
         with ThreadPoolExecutor() as executor:
-            future_to_file_data = {executor.submit(process_single_file, file_path, line_pattern, line_filter, line_extract, field_mapping_def, field_filters): file_path for file_path in file_paths}
-            for future in as_completed(future_to_file_data):
-                file_path = future_to_file_data[future]
-                try:
-                    data = future.result()
-                    preprocessed_logs.extend(data)
-                except Exception as exc:
-                    print(f'File {file_path} generated an exception: {exc}')
+            futures = [executor.submit(process_single_file, file_path, line_pattern, line_filter, line_extract, field_mapping_def, field_filters) for file_path in file_paths]
+            for future in as_completed(futures):
+                data = future.result()
+                preprocessed_logs.extend(data)
     else:
         # 不使用多线程，直接顺序处理
         for file_path in file_paths:
-            try:
-                data = process_single_file(file_path, line_pattern, line_filter, line_extract, field_mapping_def, field_filters)
-                preprocessed_logs.extend(data)
-            except Exception as exc:
-                print(f'File {file_path} generated an exception: {exc}')
+            data = process_single_file(file_path, line_pattern, line_filter, line_extract, field_mapping_def, field_filters)
+            preprocessed_logs.extend(data)
 
 # 内部处理函数，用于处理单个 top_list 项
 def process_toplist_item(preprocessed_logs, file_key, toplist_item):
@@ -481,14 +477,21 @@ def process_toplist_item(preprocessed_logs, file_key, toplist_item):
     return group_log(field_logs, merge), (file_key, count, merge, field)
 
 def process_output(preprocessed_logs, output_config, define, file_key, use_multithreading=False):
-    with print_lock:
-        print(f"Processing {file_key}, total lines {len(preprocessed_logs)} ...")
+    global directory_created
+    global directory_creation_lock
 
-    # 创建输出目录
-    # 检查并创建 output/{args.conf} 目录
+    with print_lock:
+        print(f"[{file_key}] Processing, total lines {len(preprocessed_logs)} ...")
+
+    # 创建并打开输出目录
     output_dir = os.path.join('output', os.path.basename(args.conf))
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    with directory_creation_lock:
+        if not directory_created:
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+            if platform.system().lower() in ("win", "windows"):
+                os.system("start " + output_dir)
+            directory_created = True
 
     # 预处理结果，写入Excel文件
     if output_config.get('write_log_file', False):
@@ -500,11 +503,15 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
         excel_data = []
         for log in preprocessed_logs:
             excel_data.append(log)
-        df = pd.DataFrame(excel_data)
-        df.to_excel(excel_file_path, index=False)
-        auto_adjust_excel_dimensions(excel_file_path)
-        with print_lock:
-            print(f"Preprocess Results have been written to {excel_file_path}")
+        try:
+            df = pd.DataFrame(excel_data)
+            df.to_excel(excel_file_path, index=False)
+            auto_adjust_excel_dimensions(excel_file_path)
+            with print_lock:
+                print(f"[{file_key}] Preprocess Results have been written to {excel_file_path}")
+        except Exception as e:
+            with print_lock:
+                print(f"[{file_key}] Preprocess Results Error writing Excel file: {e}")
 
     # 准备数据列表，用于最后写入Excel
     excel_data = []
@@ -516,7 +523,7 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
         top_groups = group_counter.most_common(count)
         p4_root = get_p4_workspace_root()
 
-        print(f'{file_key} Top {count} by {merge} for field {field}:')
+        print(f'[{file_key}] Top {count} by {merge} for field {field}:')
         for idx, (group, group_count) in enumerate(top_groups):
             top_index = idx + 1
             percentage = (group_count / total_count) * 100
@@ -588,7 +595,7 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
         print('-' * 80)
 
     if use_multithreading:
-        with ProcessPoolExecutor() as executor:
+        with ThreadPoolExecutor() as executor:
             futures = [executor.submit(process_toplist_item, preprocessed_logs, file_key, toplist_item) for toplist_item in output_config['toplist']]
             for future in as_completed(futures):
                 results, info = future.result()
@@ -601,16 +608,16 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
                 print_results(results, *info)
 
     # 数据统计结果，写入Excel文件
-    df = pd.DataFrame(excel_data)
-    excel_file_path = os.path.join(output_dir, f"{file_key}.result.xlsx")
-    df.to_excel(excel_file_path, index=False)
-    auto_adjust_excel_dimensions(excel_file_path)
-    with print_lock:
-        print(f"Statistic Results have been written to {excel_file_path}")
-
-    # 打开输出目录
-    if platform.system().lower() in ("win", "windows") and os.path.exists(output_dir):
-        os.system("start " + output_dir)
+    try:
+        df = pd.DataFrame(excel_data)
+        excel_file_path = os.path.join(output_dir, f"{file_key}.result.xlsx")
+        df.to_excel(excel_file_path, index=False)
+        auto_adjust_excel_dimensions(excel_file_path)
+        with print_lock:
+            print(f"[{file_key}] Statistic Results have been written to {excel_file_path}")
+    except Exception as e:
+        with print_lock:
+            print(f"[{file_key}] Statistic Results Error writing Excel file: {e}")
 
 def str_to_bool(value):
     if isinstance(value, bool):
