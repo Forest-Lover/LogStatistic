@@ -1,22 +1,21 @@
 {
     "input" : {
-        "root_path" : "../../server/Bin/cluster_scripts/linux/cluster_100/",
+        "root_path" : "../../server/Bin/cluster_scripts/*/cluster_current/",
         "file_filter" : {
             "game" : [
                 "log/game*.*"
             ]
         },
         "line_pattern" : "^\\[.*?\\]$",
-        "field_mapping" : "STANDARD",
-        "field_filters" : [
-            {
-                "field" : "LEVEL",
-                "match" : ".*"
-            }
-        ]
+        "field_mapping" : "STANDARD"
     },
     "output" : {
         "toplist" : [
+            {
+                "field" : "LEVEL",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
             {
                 "field" : "CALLER",
                 "count" : 30,
@@ -24,6 +23,7 @@
             }
         ],
         "merge_file" : false,
+        "write_log_file": true,
         "p4_caller_info" : true,
         "p4_caller_ctx_len" : -1,
         "print_line_num" : 1,

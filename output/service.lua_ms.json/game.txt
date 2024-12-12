@@ -1,4 +1,5 @@
 {'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
 {'TIMESTAMP': '2024-04-15 00:02:32.947', 'LEVEL': 'info', 'MODULE': 'SingleWorldService', 'MESSAGE': 'ResourceManager:reqScaleOut for 2, srvClusterId=100', 'CALLER': '[]     ...iceEntities/ResourceServiceComponent/ResourceManager.lua:218'}
 {'TIMESTAMP': '2024-04-15 00:02:32.947', 'LEVEL': 'info', 'MODULE': 'SingleWorldService', 'MESSAGE': 'ResourceManager:reqScaleOut scalingServerHost not set for 2, srvClusterId=100', 'CALLER': '[]     ...iceEntities/ResourceServiceComponent/ResourceManager.lua:224'}
 {'TIMESTAMP': '2024-04-15 00:03:02.949', 'LEVEL': 'info', 'MODULE': 'SingleWorldService', 'MESSAGE': 'ResourceManager:reqScaleOut for 2, srvClusterId=100', 'CALLER': '[]     ...iceEntities/ResourceServiceComponent/ResourceManager.lua:218'}
@@ -2537,5 +2538,4 @@
 {'TIMESTAMP': '2024-04-15 10:11:46.859', 'LEVEL': 'warning', 'MODULE': 'PHONESTCORE', 'MESSAGE': 'PullDelayTime [microsecond]: 274768', 'CALLER': 'IOManager.cpp:172(pull)'}
 {'TIMESTAMP': '2024-04-15 10:11:53.365', 'LEVEL': 'warning', 'MODULE': 'PHONESTCORE', 'MESSAGE': 'PullDelayTime [microsecond]: 274669', 'CALLER': 'IOManager.cpp:172(pull)'}
 {'TIMESTAMP': '2024-04-15 10:11:54.707', 'LEVEL': 'warning', 'MODULE': 'PHONESTCORE', 'MESSAGE': 'PullDelayTime [microsecond]: 619079', 'CALLER': 'IOManager.cpp:172(pull)'}
-{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
 {'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}

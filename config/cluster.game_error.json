@@ -19,14 +19,14 @@
         "toplist" : [
             {
                 "field" : "CALLER",
-                "count" : 30,
+                "count" : 1000,
                 "merge" : "EQUAL"
             }
         ],
         "merge_file" : false,
         "write_log_file": true,
         "p4_caller_info" : true,
-        "p4_caller_ctx_len" : -1,
+        "p4_caller_ctx_len" : 1,
         "print_line_num" : 1,
         "print_line_field" : ["MESSAGE"]
     }

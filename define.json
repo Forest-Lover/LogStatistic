@@ -1,25 +1,45 @@
 {
     "field_mapping_def" : {
-        "LINE" : {
-            "seperator" : "\n",
-            "mapping" : {
-                "MESSAGE" : 1
-            }
-        },
         "WHOLE" : {
             "seperator" : "none",
             "mapping" : {
-                "MESSAGE" : 1
+                "MESSAGE" : 0
+            }
+        },
+        "LINE" : {
+            "seperator" : "\n",
+            "mapping" : {
+                "MESSAGE" : 0
+            }
+        },
+        "UNITY" : {
+            "seperator" : "(?<=\\.\\d{4}\\])|(?:\\|)|(?=UnityEngine\\.StackTraceUtility)|(?=\\(Filename:)",
+            "mapping" : {
+                "TIMESTAMP" : 0,
+                "LEVEL" : 1,
+                "MESSAGE" : 2,
+                "STACKTRACE" : 3,
+                "CALLER" : 4
             }
         },
         "STANDARD" : {
             "seperator" : "brackets",
             "mapping" : {
-                "TIMESTAMP" : 1,
-                "LEVEL" : 2,
-                "MODULE" : 3,
-                "MESSAGE" : 4,
-                "CALLER" : 5
+                "TIMESTAMP" : 0,
+                "LEVEL" : 1,
+                "MODULE" : 2,
+                "MESSAGE" : 3,
+                "CALLER" : 4
+            }
+        },
+        "STANDARD_UNITY" : {
+            "seperator" : "brackets",
+            "mapping" : {
+                "TIMESTAMP" : 0,
+                "LEVEL" : 1,
+                "MODULE" : 2,
+                "MESSAGE" : "0",
+                "CALLER" : 3
             }
         },
         "ETCD" : {
@@ -41,18 +61,18 @@
                 "ERROR" : "error"
             }
         },
-        "BI_CUSTOM" : {
+        "BI" : {
             "seperator" : "json",
             "mapping" : {
                 "event" : "event",
                 "event_ts": "event_ts",
                 "log_source": "log_source",
-
                 "properties.cluster_id" : "properties.cluster_id",
                 "properties.process_id" : "properties.process_id",
                 "properties.role_name" : "properties.role_name",
                 "properties.game_uid" : "properties.game_uid",
-                "properties.player_id" : "properties.player_id"
+                "properties.player_id" : "properties.player_id",
+                "detail" : "detail"
             }
         },
         "BI_ITEM_FLOW" : {

@@ -1,2 +1,2 @@
-output/**
-config.local.json
+output/config.local.*
+config.local.*

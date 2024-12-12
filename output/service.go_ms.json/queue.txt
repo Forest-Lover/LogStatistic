@@ -1,4 +1,5 @@
 {'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
 {'TIMESTAMP': '2024-04-15 00:02:12.011', 'LEVEL': 'info', 'MODULE': 'QueueService:syncQueue', 'MESSAGE': 'cluster[0] 0-game0 syncQueue with onlineNum 0', 'CALLER': 'sync_queue.go:60'}
 {'TIMESTAMP': '2024-04-15 00:02:12.159', 'LEVEL': 'warning', 'MODULE': 'MicroServiceChannel', 'MESSAGE': 'QueueService-syncQueue Excute elapsed 149.076208ms', 'CALLER': 'service_channel.go:147'}
 {'TIMESTAMP': '2024-04-15 00:02:22.028', 'LEVEL': 'info', 'MODULE': 'QueueService:syncQueue', 'MESSAGE': 'cluster[0] 0-game0 syncQueue with onlineNum 0', 'CALLER': 'sync_queue.go:60'}
@@ -4165,5 +4166,4 @@
 {'TIMESTAMP': '2024-04-15 10:11:39.980', 'LEVEL': 'info', 'MODULE': 'QueueService:syncQueue', 'MESSAGE': 'cluster[0] 0-game0 syncQueue with onlineNum 0', 'CALLER': 'sync_queue.go:60'}
 {'TIMESTAMP': '2024-04-15 10:11:40.109', 'LEVEL': 'warning', 'MODULE': 'MicroServiceChannel', 'MESSAGE': 'QueueService-syncQueue Excute elapsed 130.256866ms', 'CALLER': 'service_channel.go:147'}
 {'TIMESTAMP': '2024-04-15 10:11:49.982', 'LEVEL': 'info', 'MODULE': 'QueueService:syncQueue', 'MESSAGE': 'cluster[0] 0-game0 syncQueue with onlineNum 0', 'CALLER': 'sync_queue.go:60'}
-{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
 {'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}

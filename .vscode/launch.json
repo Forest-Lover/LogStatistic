@@ -13,7 +13,7 @@
             "cwd": "${fileDirname}",
             "justMyCode": true,
             "args": [
-                "--conf=config/service.lua_ms.json"
+                "--conf=config/unity.lua.json"
             ]
         },
     ]

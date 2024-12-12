@@ -1,0 +1,35 @@
+{
+    "input" : {
+        "root_path" : "C:\\Users\\Administrator\\AppData\\Local\\Unity\\Editor",
+        "file_filter" : {
+            "editor" : [
+                "Editor.log"
+            ]
+        },
+        "line_pattern" : "(?<=\\.\\d\\d\\d\\d\\]).*?(?=\\[\\d+\\.\\d+\\])",
+        "line_filter" : "\\[Lua\\]",
+        "line_extract" : "(?<=\\[Lua\\]).*\\]$",
+        "field_mapping" : "STANDARD_UNITY"
+    },
+    "output" : {
+        "toplist" : [
+            {
+                "field" : "LEVEL",
+                "count" : 10,
+                "merge" : "EQUAL"
+            },
+            {
+                "field" : "CALLER",
+                "count" : 30,
+                "merge" : "EQUAL"
+            }
+        ],
+        "merge_file" : false,
+        "write_log_file" : true,
+        "p4_caller_info" : true,
+        "p4_caller_ctx_len" : 1,
+        "print_line_num" : 1,
+        "print_line_field" : ["LEVEL", "MESSAGE"]
+    }
+}
+

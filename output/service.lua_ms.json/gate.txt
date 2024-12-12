@@ -1,4 +1,3 @@
-{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
 {'TIMESTAMP': '2024-04-15 09:49:08.977', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
 {'TIMESTAMP': '2024-04-15 09:49:18.959', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
 {'TIMESTAMP': '2024-04-15 10:08:11.343', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack 0-game0 elapsed 1.108524061s', 'CALLER': 'Game2GateServiceChannel.go:226'}
@@ -86,5 +85,6 @@
 {'TIMESTAMP': '2024-04-15 10:11:41.179', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
 {'TIMESTAMP': '2024-04-15 10:11:47.369', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
 {'TIMESTAMP': '2024-04-15 10:11:50.114', 'LEVEL': 'warning', 'MODULE': 'Game2GateServiceChannel', 'MESSAGE': 'Heartbeat ack  elapsed 10s', 'CALLER': 'Game2GateServiceChannel.go:226'}
+{'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
 {'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}
 {'TIMESTAMP': 'null', 'LEVEL': 'null', 'MODULE': 'null', 'MESSAGE': 'null', 'CALLER': 'null'}

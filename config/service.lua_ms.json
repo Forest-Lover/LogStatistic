@@ -42,6 +42,7 @@
                 "merge" : "K_MEANS-30"
             }
         ],
-        "merge_file" : false
+        "merge_file" : false,
+        "write_log_file" : true
     }
 }
