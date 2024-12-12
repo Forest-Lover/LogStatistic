@@ -18,8 +18,8 @@
     - ETCD eg:```{"level":"debug","ts":"2024-12-02T00:01:06.254+0800","caller":"v3rpc/interceptor.go:175","msg":"request stats","start time":"2024-12-02T00:01:06.254+0800","time spent":"23.576µs","remote":"10.8.43.184:64071","response type":"/etcdserverpb.Cluster/MemberList","request count":-1,"request size":-1,"response count":-1,"response size":-1,"request content":""}```
     - BI eg:```{"event_ts":1733108017669,"detail":{"role_name":"lgz111122","item_type":4,"lv":1,"pet_uid":"Z00hMb8OlebPX2fv","pet_id":1001100,"cp":172,"skill_list":[11100010,11100020,10900080],"talent_list":[[5,0],[18,0],[24,0],[11,0]],"feature_list":[10102],"prop_info":[1,1,1,1,0,3],"overall_rating":"INTERFACE_DISPLAY_RATING_1"},"properties":{"role_name":"lgz111122","player_id":"Z0hiqZrYVkUqGKtT","logic_server":8043077,"vip_level":0,"aid":"","fpid_create_ts":0,"game_uid_create_ts":1732797097,"gameserver_id":8043077,"process_id":"8043077-game0","cluster_id":8043077,"game_uid":"32906","level":0},"event":"pet_change_flow","log_source":"gs"}```
     - [新增可以自行声明，声明后可以在config.json中引用]
-      - seperator 定义分隔字符，其中(none, brackets, json)特殊处理
-      - mapping 对应映射关系
+      - seperator 定义分隔字符串，其中(none, brackets, json)特殊处理，正则表达式匹配（允许：前瞻、后顾、捕捉组、零宽断言等）
+      - mapping 对应映射关系，index同python索引规则:负数表示倒序，从0开始(brackets中字符串表示跳过的sections，json中只能用字符串表示对应的key)
 
   - merge_def 日志文本的聚类方式
     - [大数据集用K_MEANS，相似度高用DBSCAN]

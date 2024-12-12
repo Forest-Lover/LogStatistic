@@ -79,6 +79,7 @@ def auto_adjust_excel_dimensions(excel_path):
                 except:
                     pass
             adjusted_width = (max_length + 2)  # 添加一点额外空间
+            adjusted_width = min(adjusted_width, 100)
             ws.column_dimensions[get_column_letter(column)].width = adjusted_width
 
         # Adjust row heights
@@ -92,6 +93,7 @@ def auto_adjust_excel_dimensions(excel_path):
                 except:
                     pass
             row_height = 15 * max_line_count # 假设标准单行高度为15
+            row_height = min(row_height, 50)
             ws.row_dimensions[row[0].row].height = row_height
 
     wb.save(excel_path)
@@ -161,9 +163,9 @@ def get_p4_file_revision_info(workspace_path, file_name, line_number, ctx_len):
     return results
 
 def extract_bracket_contents(log_line, left='[', right=']'):
-    parts = []
+    parts, partsSkip = [], []
     stack = []
-    temp = ""
+    temp, tempSkip = "", ""
     for char in log_line:
         if char == left:
             if stack:
@@ -173,16 +175,25 @@ def extract_bracket_contents(log_line, left='[', right=']'):
             if len(stack) == 1:
                 parts.append(temp)
                 temp = ""
+            elif len(stack) == 0:
+                partsSkip.append(tempSkip)
+                tempSkip = ""
             else:
                 temp += char
             stack.pop()
         else:
             if stack:
                 temp += char
+            else:
+                tempSkip += char
     # 如果栈不为空，说明有未闭合的括号
-    if stack:
-        raise ValueError("Unmatched brackets in the string")
-    return parts
+    # if stack:
+    #     raise ValueError("Unmatched brackets in the string")
+    if temp:
+        parts.append(temp)
+    if tempSkip:
+        partsSkip.append(tempSkip)
+    return parts, partsSkip
 
 def parse_timestamp(log):
     # 2024-04-01 20:54:53.415 或 2024-04-02T20:46:23.415+0800
@@ -246,18 +257,19 @@ def get_nested_json_value(data, path, default="null"):
 def preprocess_log(log_line, field_mapping_def):
     log_parts = {}
     if field_mapping_def['seperator'] == 'none':
-        # WHOLE 定义，整个逻辑行是一个字段
+        # 整个逻辑行是一个字段
         log_parts = {'MESSAGE': log_line.strip()}
     elif field_mapping_def['seperator'] == 'brackets':
         if not log_line.startswith('[') or not log_line.strip().endswith(']'):
-            parts = []
+            parts, partsSkip = [], []
         else:
-            parts = extract_bracket_contents(log_line)
-            # parts = re.findall(r'\[(?:[^\[\]]|\[[^\[\]]*\])*\]', log_line)
-            # parts = re.findall(r'\[([^[\]]+(?:\[[^\]]*\])?[^[\]]*)\]', log_line)
+            parts, partsSkip = extract_bracket_contents(log_line)
         for key, index in field_mapping_def['mapping'].items():
             try:
-                log_parts[key] = parts[index - 1]
+                if type(index) == int:
+                    log_parts[key] = parts[index]
+                else:
+                    log_parts[key] = partsSkip[int(index)]
             except IndexError:
                 log_parts[key] = "null"
     elif field_mapping_def['seperator'] == 'json':
@@ -268,10 +280,11 @@ def preprocess_log(log_line, field_mapping_def):
         for key, field in field_mapping_def['mapping'].items():
             log_parts[key] = get_nested_json_value(log_json, field)
     else:
-        parts = log_line.strip().split(field_mapping_def['seperator'])
+        parts = re.split(field_mapping_def['seperator'], log_line.strip())
+        parts = [part for part in parts if part]
         for key, index in field_mapping_def['mapping'].items():
             try:
-                log_parts[key] = parts[index - 1]
+                log_parts[key] = parts[index]
             except IndexError:
                 log_parts[key] = "null"
     return log_parts
