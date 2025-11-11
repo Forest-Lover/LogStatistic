@@ -534,7 +534,10 @@ def process_output(preprocessed_logs, output_config, define, file_key, use_multi
         group_counter = Counter(groups)
         total_count = sum(group_counter.values())
         top_groups = group_counter.most_common(count)
-        p4_root = get_p4_workspace_root()
+        try:
+            p4_root = get_p4_workspace_root()
+        except Exception as e:
+            p4_root = None
 
         print(f'[{file_key}] Top {count} by {merge} for field {field}:')
         for idx, (group, group_count) in enumerate(top_groups):
